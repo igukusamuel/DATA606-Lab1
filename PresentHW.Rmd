@@ -1,0 +1,111 @@
+---
+title: "PresentHW"
+author: "Samuel Kigamba"
+date: "Sep 1, 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## On Your Own
+
+In the previous few pages, you recreated some of the displays and preliminary 
+analysis of Arbuthnot's baptism data. Your assignment involves repeating these 
+steps, but for present day birth records in the United States.  Load up the 
+present day data with the following command.
+
+```{r load-present-data, eval=TRUE}
+source("more/present.R")
+```
+
+```{r view-present-data, eval=TRUE}
+head(present, 5)
+tail(present, 5)
+```
+```{r load-abrbuthnot-data, eval=TRUE}
+source("more/arbuthnot.R")
+```
+
+```{r view-abrbuthnot-data, eval=TRUE}
+head(arbuthnot, 5)
+tail(arbuthnot, 5)
+```
+What years are included in this data set?
+```{r view-years-present, eval=TRUE}
+present$year
+```
+The year is 1940-2002
+
+What are the dimensions of the data frame?
+```{r view-dimensions-present, eval=TRUE}
+dim(present)
+```
+63 rows and 3 columns
+    
+What are the variable or column names?
+```{r view-column-names-present, eval=TRUE}
+names(present)
+```
+"year"  "boys"  "girls"
+
+How do these counts compare to Arbuthnots? Are they on a similar scale?
+
+both have 3 columns, "year"  "boys"  "girls".
+```{r view-column-names-arbuthnot, eval=TRUE}
+names(arbuthnot)
+```
+```{r view-compare-column-names-present, eval=TRUE}
+names(present)
+```
+
+Arbuthnot has 82 rows while present has 63,
+```{r view-last-row-present-data, eval=TRUE}
+tail(present, 1)
+```
+```{r view-last-row-abrbuthnot-data, eval=TRUE}
+tail(arbuthnot, 1)
+```
+
+Make a plot that displays the boy-to-girl ratio for every year in the data set. 
+    
+```{r plot-ratio-of-boys-to-girls-present, eval=TRUE}
+plot(present$year, present$boys / present$girls, type = "l")
+```
+
+What do you see? The ratio of boys to girls is higher although reducing for all the years.
+
+
+Does Arbuthnots observation about boys being born in greater proportion than girls hold up in the U.S.? yes it does.
+    
+Include the plot in your response.
+
+```{r plot-ratio-of-boys-to-girls-arbuthnot, eval=TRUE}
+plot(arbuthnot$year, arbuthnot$boys / arbuthnot$girls, type = "l")
+```
+
+
+In what year did we see the most total number of births in the U.S.? Year 1961 total population of 4,268,326.
+```{r max-population-year-present, eval=TRUE}
+present[present$boys + present$girls == max(present$boys + present$girls),]
+```
+
+
+You can
+    refer to the help files or the R reference card 
+    [http://cran.r-project.org/doc/contrib/Short-refcard.pdf](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+    to find helpful commands.
+
+These data come from a report by the Centers for Disease Control 
+[http://www.cdc.gov/nchs/data/nvsr/nvsr53/nvsr53_20.pdf](http://www.cdc.gov/nchs/data/nvsr/nvsr53/nvsr53_20.pdf). 
+Check it out if you would like to read more about an analysis of sex ratios at 
+birth in the United States.
+
+That was a short introduction to R and RStudio, but we will provide you with more
+functions and a more complete sense of the language as the course progresses. 
+Feel free to browse around the websites for [R](http://www.r-project.org) and 
+[RStudio](http://rstudio.org) if you're interested in learning more, or find 
+more labs for practice at http://openintro.org.
